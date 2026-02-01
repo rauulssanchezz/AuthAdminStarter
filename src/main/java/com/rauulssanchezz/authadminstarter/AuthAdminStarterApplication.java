@@ -1,13 +1,13 @@
-package com.rauulssanchezz.securevault;
+package com.rauulssanchezz.authadminstarter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SecurevaultApplication {
+public class AuthAdminStarterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SecurevaultApplication.class, args);
+		SpringApplication.run(AuthAdminStarterApplication.class, args);
 	}
 
 }

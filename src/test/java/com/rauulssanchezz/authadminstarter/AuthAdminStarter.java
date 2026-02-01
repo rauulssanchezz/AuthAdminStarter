@@ -1,10 +1,10 @@
-package com.rauulssanchezz.securevault;
+package com.rauulssanchezz.authadminstarter;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SecurevaultApplicationTests {
+class AuthAdminStarterApplicationTests {
 
 	@Test
 	void contextLoads() {
