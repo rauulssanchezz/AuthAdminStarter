@@ -35,11 +35,11 @@ public class User implements UserDetails{
     @Column(nullable = false, unique = true)
     private String email;
 
-    private String rol;
+    private String role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Set.of(new SimpleGrantedAuthority(rol));
+        return Set.of(new SimpleGrantedAuthority(role));
     }
     @Override public String getPassword() { return password; }
     @Override public String getUsername() { return username; }
