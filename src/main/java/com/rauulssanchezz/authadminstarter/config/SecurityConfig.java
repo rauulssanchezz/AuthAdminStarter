@@ -2,8 +2,10 @@ package com.rauulssanchezz.authadminstarter.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.rauulssanchezz.authadminstarter.user.CustomUserDetailsService;
@@ -13,14 +15,24 @@ import com.rauulssanchezz.authadminstarter.user.CustomUserDetailsService;
 public class SecurityConfig {
 
     private final CustomUserDetailsService userDetailsService;
+    private final PasswordEncoder passwordEncoder;
 
     // Constructor injection (Best practice)
-    public SecurityConfig(CustomUserDetailsService userDetailsService) {
+    public SecurityConfig(CustomUserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
-    }
+        this.passwordEncoder = passwordEncoder;
+    }   
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+        AuthenticationManagerBuilder authenticationManagerBuilder = 
+            http.getSharedObject(AuthenticationManagerBuilder.class);
+        
+        authenticationManagerBuilder
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(passwordEncoder);
+
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/**", "/css/**", "/js/**", "/h2-console/**").permitAll()
