@@ -54,7 +54,8 @@ public class SecurityConfig {
             // Esto es para que funcione la consola de H2
             //Solo en desarrollo
             .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
-            .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
+            .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
+            .exceptionHandling(exception -> exception.accessDeniedPage("/access-denied"));
 
         // Aquí es donde Spring conecta automáticamente tu CustomUserDetailsService
         http.userDetailsService(userDetailsService);
